@@ -1,0 +1,21 @@
+header {
+	padding: 20px 0;
+	background-color: #1c1e23;	
+
+	& a {
+		font-size: 36px;
+		font-weight: 600;
+		color: #f16522;
+		text-decoration: none;
+		transition: all .3s ease;
+
+		&:hover {
+			color: #f16522;
+			text-decoration: none;
+		}
+	}
+}
+
+main {
+	padding: 60px 0;
+}
