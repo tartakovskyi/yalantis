@@ -5,17 +5,21 @@ import EmployeesBirthday from './EmployeesBirthday'
 
 
 export const AppContext = React.createContext()
-const usersByAlphabet = {A:[],B:[],C:[],D:[],E:[],F:[],G:[],H:[],I:[],J:[],K:[],L:[],M:[],N:[],O:[],P:[],Q:[],R:[],S:[],T:[],U:[],V:[],W:[],X:[],Y:[],Z:[]}
+
 
 const App = () => {
 
-  const [users, setUsers] = useState(usersByAlphabet)
+  const [users, setUsers] = useState({})
 
   useEffect(() => {
     apiGetUsers()
     .then(response => {
-      
-      setUsers(response.data)
+      let usersByAlphabet = {A:[],B:[],C:[],D:[],E:[],F:[],G:[],H:[],I:[],J:[],K:[],L:[],M:[],N:[],O:[],P:[],Q:[],R:[],S:[],T:[],U:[],V:[],W:[],X:[],Y:[],Z:[]}
+      response.data.forEach(user => {
+        const firstLetter = user.lastName.substr(0,1)
+        usersByAlphabet[firstLetter].push(user)
+      })
+      setUsers(usersByAlphabet)
     })
     .catch(error => {
       console.log(error)
@@ -23,25 +27,28 @@ const App = () => {
   }, [])
 
   return (
-    <AppContext.Provider value={{users}}>
+    <div className="App">
       <header>
         <div className="container">
           <a href="/">Yalantis React School</a>
         </div>  
       </header>
       <main>
-        <div className="container">
+        <div className="container">    
           <div className="row">
-            <div className="col-7">
-              <Employees />
-            </div>
-            <div className="col-5">
-              <EmployeesBirthday />
-            </div>
+            {Object.keys(users).length 
+              ?
+              <AppContext.Provider value={{users}}>
+                <Employees />
+                <EmployeesBirthday />    
+              </AppContext.Provider>
+              :
+              null   
+            }
           </div>
         </div>
       </main>
-    </AppContext.Provider>
+    </div>
   )
 }
 
