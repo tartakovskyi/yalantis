@@ -1,12 +1,16 @@
-import React, { useState }  from 'react'
+import React, { useContext, useState }  from 'react'
+import { AppContext } from './App'
 
 
-const Employee = ({user:{id, firstName, lastName}}) => {
+const Employee = ({ user:{ id, firstName, lastName }, letter}) => {
 
-  const [active, setActive] = useState('0');
+  const [active, setActive] = useState(0);
+  const {changeUserStatus} = useContext(AppContext) 
 
   const onChangeValue = e => {
-    setActive(e.target.value)
+    const value = Number(e.target.value)
+    setActive(value)
+    changeUserStatus(id, letter, value)
   }
 
   return (
@@ -21,7 +25,7 @@ const Employee = ({user:{id, firstName, lastName}}) => {
             id={`notActive_${id}`}
             className="form-check-input"
             onChange={onChangeValue}
-            checked={active === '0'}
+            checked={active === 0}
           />
           <span className="form-check-label">not active</span>
         </label>
@@ -33,7 +37,7 @@ const Employee = ({user:{id, firstName, lastName}}) => {
             id={`active_${id}`}
             className="form-check-input"
             onChange={onChangeValue}
-            checked={active === '1'}
+            checked={active === 1}
           />
           <span className="form-check-label">active</span>
         </label>
