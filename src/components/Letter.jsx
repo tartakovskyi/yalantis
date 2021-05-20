@@ -3,15 +3,21 @@ import Employee from './Employee'
 
 const Letter = ({ letter, users }) => {
 
-  const userIdArr = Object.keys(users)
+  const usersArr = Object.values(users).sort((a, b) => {
+    if (a.lastName > b.lastName) {
+      return 1
+    } else if (a.lastName < b.lastName) {
+      return -1
+    } else return 0
+  })
 
   return (
     <div className="col-4">
       <h3>{letter}</h3>
-      {userIdArr.length
+      {usersArr.length
         ?
         <ul className="users-list">
-          {userIdArr.map(id => <Employee user={users[id]} letter={letter} key={id} />)}
+          {usersArr.map(user => <Employee user={user} letter={letter} key={user.id} />)}
         </ul>
         :
         <hr className="no-users" />

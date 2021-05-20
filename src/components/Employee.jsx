@@ -4,8 +4,10 @@ import { AppContext } from './App'
 
 const Employee = ({ user:{ id, firstName, lastName }, letter}) => {
 
-  const [active, setActive] = useState(0);
-  const {changeUserStatus} = useContext(AppContext) 
+  const [active, setActive] = useState(0)
+  const {changeUserStatus} = useContext(AppContext)
+
+  const cls = active === 0 ? 'employee__name' : 'employee__name active'
 
   const onChangeValue = e => {
     const value = Number(e.target.value)
@@ -15,7 +17,7 @@ const Employee = ({ user:{ id, firstName, lastName }, letter}) => {
 
   return (
     <li className="employee">
-      <h4 className="employee__name">{firstName} {lastName}</h4>
+      <h4 className={cls}>{firstName} {lastName}</h4>
       <form>
         <label className="form-check">
           <input 
