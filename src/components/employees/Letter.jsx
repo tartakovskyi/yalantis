@@ -18,7 +18,7 @@ const Letter = ({ letter, users }) => {
       {usersArr.length
         ?
         <ul className="users-list">
-          {usersArr.map(user => <Employee user={user} letter={letter} key={user.id} />)}
+          {usersArr.map(user => <Employee user={user} key={user.id} />)}
         </ul>
         :
         <hr className="no-users" />

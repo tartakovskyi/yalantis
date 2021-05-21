@@ -63,4 +63,10 @@ ul.users-list {
 	}
 }
 
+ul.birthdays-list {
+	@extend .users-list;
 
+	& li {
+		margin-bottom: 15px;
+	}
+}

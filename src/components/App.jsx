@@ -1,33 +1,39 @@
 import React, { useEffect, useState }  from 'react'
 import { apiGetUsers } from "../api"
-import Employees from './Employees'
-import EmployeesBirthday from './EmployeesBirthday'
+import Employees from './employees/Employees'
+import EmployeesBirthday from './birthdays/EmployeesBirthday'
 
 
 export const AppContext = React.createContext()
 
 
 const App = () => {
-
-  const [users, setUsers] = useState({})
+  const [usersRaw, setUsersRaw] = useState([])
+  const [usersByAlphabet, setUsersByAlphabet] = useState({})
+  const [activeUsers, setActiveUsers] = useState(localStorage.getItem('activeUsers') ? localStorage.getItem('activeUsers') : [])
 
   useEffect(() => {
     apiGetUsers()
     .then(response => {
-      let usersByAlphabet = {A:{},B:{},C:{},D:{},E:{},F:{},G:{},H:{},I:{},J:{},K:{},L:{},M:{},N:{},O:{},P:{},Q:{},R:{},S:{},T:{},U:{},V:{},W:{},X:{},Y:{},Z:{}}
+      setUsersRaw(response.data)
+      let alphabeObj = {A:{},B:{},C:{},D:{},E:{},F:{},G:{},H:{},I:{},J:{},K:{},L:{},M:{},N:{},O:{},P:{},Q:{},R:{},S:{},T:{},U:{},V:{},W:{},X:{},Y:{},Z:{}}
       response.data.forEach(user => {
         const firstLetter = user.lastName.substr(0,1)
-        usersByAlphabet[firstLetter][user.id] = {...user, active:0}
+        alphabeObj[firstLetter][user.id] = user
       })
-      setUsers(usersByAlphabet)
+      setUsersByAlphabet(alphabeObj)
     })
     .catch(error => {
       console.log(error)
     })
   }, [])
 
-  const changeUserStatus = (id, letter, active) => {
-    setUsers({...users, [letter]:{...users[letter], [id]:{...users[letter][id], active}}})
+  const changeUserStatus = (id, active) => {
+    if (active) {
+      if (!activeUsers.includes(id)) setActiveUsers([...activeUsers, id])
+    } else {
+      setActiveUsers(activeUsers.filter(userId => userId !== id))
+    }
   }
 
   return (
@@ -40,9 +46,9 @@ const App = () => {
       <main>
         <div className="container">    
           <div className="row">
-            {Object.keys(users).length 
+            {Object.keys(usersByAlphabet).length 
               ?
-              <AppContext.Provider value={{users, changeUserStatus}}>
+              <AppContext.Provider value={{usersRaw, usersByAlphabet, activeUsers, changeUserStatus}}>
                 <Employees />
                 <EmployeesBirthday />    
               </AppContext.Provider>

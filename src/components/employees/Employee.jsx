@@ -1,18 +1,18 @@
 import React, { useContext, useState } from 'react'
-import { AppContext } from './App'
+import { AppContext } from '../App'
 
 
-const Employee = ({ user:{ id, firstName, lastName }, letter}) => {
-
-  const [active, setActive] = useState(0)
-  const {changeUserStatus} = useContext(AppContext)
+const Employee = ({ user:{ id, firstName, lastName } }) => {
+  const {activeUsers, changeUserStatus} = useContext(AppContext)
+  const [active, setActive] = useState(activeUsers.includes(id) ? 1 : 0)
+  
 
   const cls = active === 0 ? 'employee__name' : 'employee__name active'
 
   const onChangeValue = e => {
     const value = Number(e.target.value)
     setActive(value)
-    changeUserStatus(id, letter, value)
+    changeUserStatus(id, value)
   }
 
   return (
