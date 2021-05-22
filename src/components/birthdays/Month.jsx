@@ -10,7 +10,7 @@ const Month = ({ name, users }) => {
     <li className="month">
       <h4 className="month__name">{name}</h4>
       <ul>
-        {users.map((user) => (
+        {sortedUsers.map((user) => (
           <Birthday user={user} month={name} key={user.id} />
         ))}
       </ul>
