@@ -10,7 +10,7 @@ export const AppContext = React.createContext()
 const App = () => {
   const [usersRaw, setUsersRaw] = useState([])
   const [usersByAlphabet, setUsersByAlphabet] = useState({})
-  const [activeUsers, setActiveUsers] = useState(localStorage.getItem('activeUsers') ? localStorage.getItem('activeUsers') : [])
+  const [activeUsers, setActiveUsers] = useState(localStorage.getItem('activeUsers') ? JSON.parse(localStorage.getItem('activeUsers')) : [])
 
   useEffect(() => {
     apiGetUsers()
@@ -29,18 +29,21 @@ const App = () => {
   }, [])
 
   const changeUserStatus = (id, active) => {
+    let newArr
     if (active) {
-      if (!activeUsers.includes(id)) setActiveUsers([...activeUsers, id])
+      if (!activeUsers.includes(id)) newArr = [...activeUsers, id]
     } else {
-      setActiveUsers(activeUsers.filter(userId => userId !== id))
+      newArr = activeUsers.filter(userId => userId !== id)
     }
+    setActiveUsers(newArr)
+    localStorage.setItem('activeUsers', JSON.stringify(newArr))
   }
 
   return (
     <div className="App">
       <header>
         <div className="container">
-          <a href="/">Yalantis React School</a>
+          <a href="/">Yalantis React.js School</a>
         </div>  
       </header>
       <main>
