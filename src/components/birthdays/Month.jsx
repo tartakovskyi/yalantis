@@ -1,8 +1,11 @@
 import React from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
+import { sortByLastName } from "../../utils";
 import Birthday from "./Birthday";
 
 const Month = ({ name, users }) => {
+  const sortedUsers = users.sort(sortByLastName);
+
   return (
     <li className="month">
       <h4 className="month__name">{name}</h4>
@@ -17,7 +20,7 @@ const Month = ({ name, users }) => {
 
 Month.propTypes = {
   name: PropTypes.string.isRequired,
-  users: PropTypes.array.isRequired
+  users: PropTypes.array.isRequired,
 };
 
 export default Month;

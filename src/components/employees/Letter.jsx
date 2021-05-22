@@ -1,15 +1,10 @@
 import React from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
+import { sortByLastName } from "../../utils";
 import Employee from "./Employee";
 
 const Letter = ({ letter, users }) => {
-  const usersArr = Object.values(users).sort((a, b) => {
-    if (a.lastName > b.lastName) {
-      return 1;
-    } else if (a.lastName < b.lastName) {
-      return -1;
-    } else return 0;
-  });
+  const usersArr = Object.values(users).sort(sortByLastName);
 
   return (
     <div className="col-4">
@@ -29,7 +24,7 @@ const Letter = ({ letter, users }) => {
 
 Letter.propTypes = {
   letter: PropTypes.string.isRequired,
-  users: PropTypes.object.isRequired
+  users: PropTypes.object.isRequired,
 };
 
 export default Letter;
