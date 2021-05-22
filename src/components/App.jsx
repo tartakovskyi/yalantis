@@ -70,7 +70,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {console.time("app")}
       <header>
         <div className="container">
           <a href="/">Yalantis React.js School</a>
@@ -95,7 +94,6 @@ const App = () => {
           </div>
         </div>
       </main>
-      {console.timeEnd("app")}
     </div>
   );
 };
