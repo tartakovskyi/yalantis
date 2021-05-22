@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 const Birthday = ({ user: { dob, firstName, lastName }, month }) => {
   const DateString = () => {
@@ -9,19 +9,18 @@ const Birthday = ({ user: { dob, firstName, lastName }, month }) => {
 
   return (
     <li>
-    {firstName} {lastName} - <DateString />
+      {firstName} {lastName} - <DateString />
     </li>
   );
 };
 
-
 Birthday.propTypes = {
   user: PropTypes.shape({
     dob: PropTypes.string.isRequired,
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
   }).isRequired,
-  month: PropTypes.string.isRequired
+  month: PropTypes.string.isRequired,
 };
 
 export default Birthday;
