@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 import Employee from "./Employee";
 
 const Letter = ({ letter, users }) => {
@@ -24,6 +25,11 @@ const Letter = ({ letter, users }) => {
       )}
     </div>
   );
+};
+
+Letter.propTypes = {
+  letter: PropTypes.string.isRequired,
+  users: PropTypes.object.isRequired
 };
 
 export default Letter;

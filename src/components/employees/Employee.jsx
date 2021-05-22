@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import PropTypes from 'prop-types'
 import { AppContext } from "../App";
 
 const Employee = ({ user: { id, firstName, lastName } }) => {
@@ -46,6 +47,14 @@ const Employee = ({ user: { id, firstName, lastName } }) => {
       </form>
     </li>
   );
+};
+
+Employee.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export default Employee;

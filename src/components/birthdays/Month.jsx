@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 import Birthday from "./Birthday";
 
 const Month = ({ name, users }) => {
@@ -12,6 +13,11 @@ const Month = ({ name, users }) => {
       </ul>
     </li>
   );
+};
+
+Month.propTypes = {
+  name: PropTypes.string.isRequired,
+  users: PropTypes.array.isRequired
 };
 
 export default Month;
