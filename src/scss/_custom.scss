@@ -1,72 +1,71 @@
 header {
-	padding: 20px 0;
-	background-color: #1c1e23;	
+  padding: 20px 0;
+  background-color: #1c1e23;
 
-	& a {
-		font-size: 36px;
-		font-weight: 600;
-		color: #f16522;
-		text-decoration: none;
-		transition: all .3s ease;
+  & a {
+    font-size: 36px;
+    font-weight: 600;
+    color: #f16522;
+    text-decoration: none;
+    transition: all 0.3s ease;
 
-		&:hover {
-			color: #f16522;
-			text-decoration: none;
-		}
-	}
+    &:hover {
+      color: #f16522;
+      text-decoration: none;
+    }
+  }
 }
 
 main {
-	padding: 60px 0;
+  padding: 60px 0;
 }
 
 h2 {
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 h3 {
-	font-size: 1.5rem;
-	margin-bottom: 15px;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
 }
 
 ul.users-list {
-	padding-left: 0;
-	list-style: none;
+  padding-left: 0;
+  list-style: none;
 }
 
 .no-users {
-	width: 30px;
-	background-color: #212529;
-	margin-left: 0;
-	margin-right: 0;
+  width: 30px;
+  background-color: #212529;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .employee {
-	margin-bottom: 15px;
+  margin-bottom: 15px;
 
-	&__name {
-		font-size: 1rem;
+  &__name {
+    font-size: 1rem;
 
-		&.active {
-			color: #0075ff;		
-		}
-	}
-	
+    &.active {
+      color: #0075ff;
+    }
+  }
 }
 
 .form-check {
-	margin-bottom: 0;
-	cursor: pointer;
+  margin-bottom: 0;
+  cursor: pointer;
 
-	.form-check-input {
-		margin-top: 0.45rem;
-	}
+  .form-check-input {
+    margin-top: 0.45rem;
+  }
 }
 
 ul.birthdays-list {
-	@extend .users-list;
+  @extend .users-list;
 
-	& li {
-		margin-bottom: 15px;
-	}
+  & li {
+    margin-bottom: 15px;
+  }
 }

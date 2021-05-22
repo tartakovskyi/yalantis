@@ -1,26 +1,26 @@
-import React, { useContext, useState } from 'react'
-import { AppContext } from '../App'
+import React, { useContext, useState } from "react";
+import { AppContext } from "../App";
 
+const Employee = ({ user: { id, firstName, lastName } }) => {
+  const { activeUsers, changeUserStatus } = useContext(AppContext);
+  const [active, setActive] = useState(activeUsers.includes(id) ? 1 : 0);
 
-const Employee = ({ user:{ id, firstName, lastName } }) => {
-  const {activeUsers, changeUserStatus} = useContext(AppContext)
-  const [active, setActive] = useState(activeUsers.includes(id) ? 1 : 0)
-  
+  const cls = active === 0 ? "employee__name" : "employee__name active";
 
-  const cls = active === 0 ? 'employee__name' : 'employee__name active'
-
-  const onChangeValue = e => {
-    const value = Number(e.target.value)
-    setActive(value)
-    changeUserStatus(id, value)
-  }
+  const onChangeValue = (e) => {
+    const value = Number(e.target.value);
+    setActive(value);
+    changeUserStatus(id, value);
+  };
 
   return (
     <li className="employee">
-      <h4 className={cls}>{firstName} {lastName}</h4>
+      <h4 className={cls}>
+        {firstName} {lastName}
+      </h4>
       <form>
         <label className="form-check">
-          <input 
+          <input
             type="radio"
             name={`active_${id}`}
             value="0"
@@ -31,8 +31,8 @@ const Employee = ({ user:{ id, firstName, lastName } }) => {
           />
           <span className="form-check-label">not active</span>
         </label>
-        <label className="form-check">  
-          <input 
+        <label className="form-check">
+          <input
             type="radio"
             name={`active_${id}`}
             value="1"
@@ -45,9 +45,7 @@ const Employee = ({ user:{ id, firstName, lastName } }) => {
         </label>
       </form>
     </li>
-  )
-}
+  );
+};
 
-
-export default Employee
-
+export default Employee;

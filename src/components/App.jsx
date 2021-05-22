@@ -1,68 +1,101 @@
-import React, { useEffect, useState }  from 'react'
-import { apiGetUsers } from "../api"
-import Employees from './employees/Employees'
-import EmployeesBirthday from './birthdays/EmployeesBirthday'
+import React, { useEffect, useState } from "react";
+import { apiGetUsers } from "../api";
+import Employees from "./employees/Employees";
+import EmployeesBirthday from "./birthdays/EmployeesBirthday";
 
-
-export const AppContext = React.createContext()
-
+export const AppContext = React.createContext();
 
 const App = () => {
-  const [usersRaw, setUsersRaw] = useState([])
-  const [usersByAlphabet, setUsersByAlphabet] = useState({})
-  const [activeUsers, setActiveUsers] = useState(localStorage.getItem('activeUsers') ? JSON.parse(localStorage.getItem('activeUsers')) : [])
+  const [usersRaw, setUsersRaw] = useState([]);
+  const [usersByAlphabet, setUsersByAlphabet] = useState({});
+  const [activeUsers, setActiveUsers] = useState(
+    localStorage.getItem("activeUsers")
+      ? JSON.parse(localStorage.getItem("activeUsers"))
+      : []
+  );
 
   useEffect(() => {
     apiGetUsers()
-    .then(response => {
-      setUsersRaw(response.data)
-      let alphabeObj = {A:{},B:{},C:{},D:{},E:{},F:{},G:{},H:{},I:{},J:{},K:{},L:{},M:{},N:{},O:{},P:{},Q:{},R:{},S:{},T:{},U:{},V:{},W:{},X:{},Y:{},Z:{}}
-      response.data.forEach(user => {
-        const firstLetter = user.lastName.substr(0,1)
-        alphabeObj[firstLetter][user.id] = user
+      .then((response) => {
+        setUsersRaw(response.data);
+        let alphabeObj = {
+          A: {},
+          B: {},
+          C: {},
+          D: {},
+          E: {},
+          F: {},
+          G: {},
+          H: {},
+          I: {},
+          J: {},
+          K: {},
+          L: {},
+          M: {},
+          N: {},
+          O: {},
+          P: {},
+          Q: {},
+          R: {},
+          S: {},
+          T: {},
+          U: {},
+          V: {},
+          W: {},
+          X: {},
+          Y: {},
+          Z: {},
+        };
+        response.data.forEach((user) => {
+          const firstLetter = user.lastName.substr(0, 1);
+          alphabeObj[firstLetter][user.id] = user;
+        });
+        setUsersByAlphabet(alphabeObj);
       })
-      setUsersByAlphabet(alphabeObj)
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  }, [])
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const changeUserStatus = (id, active) => {
-    let newArr
+    let newArr;
     if (active) {
-      if (!activeUsers.includes(id)) newArr = [...activeUsers, id]
+      if (!activeUsers.includes(id)) newArr = [...activeUsers, id];
     } else {
-      newArr = activeUsers.filter(userId => userId !== id)
+      newArr = activeUsers.filter((userId) => userId !== id);
     }
-    setActiveUsers(newArr)
-    localStorage.setItem('activeUsers', JSON.stringify(newArr))
-  }
+    setActiveUsers(newArr);
+    localStorage.setItem("activeUsers", JSON.stringify(newArr));
+  };
 
   return (
     <div className="App">
       <header>
         <div className="container">
           <a href="/">Yalantis React.js School</a>
-        </div>  
+        </div>
       </header>
       <main>
-        <div className="container">    
+        <div className="container">
           <div className="row">
-            {Object.keys(usersByAlphabet).length 
-              ?
-              <AppContext.Provider value={{usersRaw, usersByAlphabet, activeUsers, changeUserStatus}}>
+            {Object.keys(usersByAlphabet).length ? (
+              <AppContext.Provider
+                value={{
+                  usersRaw,
+                  usersByAlphabet,
+                  activeUsers,
+                  changeUserStatus,
+                }}
+              >
                 <Employees />
-                <EmployeesBirthday />    
+                <EmployeesBirthday />
               </AppContext.Provider>
-              :
-              null   
-            }
+            ) : null}
           </div>
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
