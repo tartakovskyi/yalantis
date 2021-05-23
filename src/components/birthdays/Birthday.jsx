@@ -23,4 +23,4 @@ Birthday.propTypes = {
   month: PropTypes.string.isRequired,
 };
 
-export default Birthday;
+export default React.memo(Birthday);
