@@ -1,9 +1,9 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import { AppContext } from "../../App";
 import Employee from "../Employee";
 
-test("Employee shold render correctly", () => {
+test("Employee should render correctly", () => {
   const user = {
     id: "5e00928d91e7feaa9872ec08",
     firstName: "Yang",
@@ -18,13 +18,19 @@ test("Employee shold render correctly", () => {
     "5e00928d8d97a843dbb05270",
     "5e00928d3939c957e9c63c2a",
   ];
-  const changeUserStatus = () => {};
+  const changeUserStatus = jest.fn();
 
-  const { container } = render(
+  const { container, getByLabelText } = render(
     <AppContext.Provider value={{ activeUsers, changeUserStatus }}>
       <Employee user={user} />
     </AppContext.Provider>
   );
 
   expect(container.firstChild).toMatchSnapshot();
+
+  const radio = getByLabelText("active");
+  fireEvent.change(radio, { target: { value: "0" } });
+  expect(radio.value).toBe("0");
+  expect(changeUserStatus).toHaveBeenCalled();
+  expect(changeUserStatus).toHaveBeenCalledWith(user.id, 0);
 });
