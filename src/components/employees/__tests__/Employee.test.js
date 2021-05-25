@@ -29,8 +29,8 @@ test("Employee should render correctly", () => {
   expect(container.firstChild).toMatchSnapshot();
 
   const radio = getByLabelText("active");
-  fireEvent.change(radio, { target: { value: "0" } });
-  expect(radio.value).toBe("0");
+  fireEvent.click(radio);
+  expect(radio.value).toBe("1");
   expect(changeUserStatus).toHaveBeenCalled();
-  expect(changeUserStatus).toHaveBeenCalledWith(user.id, 0);
+  expect(changeUserStatus).toHaveBeenCalledWith(user.id, 1);
 });
