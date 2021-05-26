@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { render, fireEvent } from "@testing-library/react";
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 import { AppContext } from "../../App";
 import Employee from "../Employee";
 
-test("Employee should render correctly", () => {
+Enzyme.configure({ adapter: new Adapter() });
+
+describe("<Employee />", () => {
+  let wrapper;
   const user = {
     id: "5e00928d91e7feaa9872ec08",
     firstName: "Yang",
@@ -19,18 +24,38 @@ test("Employee should render correctly", () => {
     "5e00928d3939c957e9c63c2a",
   ];
   const changeUserStatus = jest.fn();
+  const setState = jest.fn();
+  const useStateSpy = jest.spyOn(React, "useState");
+  useStateSpy.mockImplementation((init) => [init, setState]);
 
-  const { container, getByLabelText } = render(
-    <AppContext.Provider value={{ activeUsers, changeUserStatus }}>
-      <Employee user={user} />
-    </AppContext.Provider>
-  );
+  beforeEach(() => {
+    wrapper = Enzyme.shallow(
+      <AppContext.Provider value={{ activeUsers, changeUserStatus }}>
+        <Employee user={user} />
+      </AppContext.Provider>
+    );
+  });
 
-  expect(container.firstChild).toMatchSnapshot();
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
-  const radio = getByLabelText("active");
-  fireEvent.click(radio);
-  expect(radio.value).toBe("1");
-  expect(changeUserStatus).toHaveBeenCalled();
-  expect(changeUserStatus).toHaveBeenCalledWith(user.id, 1);
+  describe("Snapshot", () => {
+    it("Employee should render correctly", () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+  });
+
+  describe("Change Status", () => {
+    it("Change radio button value", () => {
+      wrapper.find(`[id^="#notActive_"]`).simulate("click");
+
+      //expect(radio.value).toBe("1");
+      expect(wrapper.find(".employee__name.active").length).toBe(1);
+      expect(changeUserStatus).toHaveBeenCalled();
+      expect(changeUserStatus).toHaveBeenCalledWith(user.id, 1);
+      expect(setState).toHaveBeenCalled();
+      expect(setState).toHaveBeenCalledWith(1);
+    });
+  });
 });

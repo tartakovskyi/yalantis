@@ -1,5 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Employee /> Employee should render correctly 1`] = `ShallowWrapper {}`;
+
+exports[`<Employee /> Snapshot Employee should render correctly 1`] = `ShallowWrapper {}`;
+
 exports[`Employee shold render correctly 1`] = `
 <li
   class="employee"
