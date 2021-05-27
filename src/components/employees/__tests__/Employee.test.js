@@ -48,9 +48,8 @@ describe("<Employee />", () => {
 
   describe("Change Status", () => {
     it("Change radio button value", () => {
-      wrapper.find(`[id^="#notActive_"]`).simulate("click");
+      wrapper.find(`[id^="active_"]`).simulate("click");
 
-      //expect(radio.value).toBe("1");
       expect(wrapper.find(".employee__name.active").length).toBe(1);
       expect(changeUserStatus).toHaveBeenCalled();
       expect(changeUserStatus).toHaveBeenCalledWith(user.id, 1);
