@@ -1,58 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Employee /> Employee should render correctly 1`] = `ShallowWrapper {}`;
-
-exports[`<Employee /> Snapshot Employee should render correctly 1`] = `ShallowWrapper {}`;
-
-exports[`Employee shold render correctly 1`] = `
-<li
-  class="employee"
->
-  <h4
-    class="employee__name"
-  >
-    Yang
-     
-    Carson
-  </h4>
-  <form>
-    <label
-      class="form-check"
-    >
-      <input
-        checked=""
-        class="form-check-input"
-        id="notActive_5e00928d91e7feaa9872ec08"
-        name="active_5e00928d91e7feaa9872ec08"
-        type="radio"
-        value="0"
-      />
-      <span
-        class="form-check-label"
-      >
-        not active
-      </span>
-    </label>
-    <label
-      class="form-check"
-    >
-      <input
-        class="form-check-input"
-        id="active_5e00928d91e7feaa9872ec08"
-        name="active_5e00928d91e7feaa9872ec08"
-        type="radio"
-        value="1"
-      />
-      <span
-        class="form-check-label"
-      >
-        active
-      </span>
-    </label>
-  </form>
-</li>
-`;
-
 exports[`Employee should render correctly 1`] = `
 <li
   class="employee"
