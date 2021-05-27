@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmployeesBirthday should render correctly 1`] = `
+<div
+  class="col-5"
+>
+  <h2>
+    Employees Birthday
+  </h2>
+  <ul
+    class="birthdays-list"
+  >
+    <div
+      data-testid="month"
+    >
+      Month
+    </div>
+    <div
+      data-testid="month"
+    >
+      Month
+    </div>
+    <div
+      data-testid="month"
+    >
+      Month
+    </div>
+    <div
+      data-testid="month"
+    >
+      Month
+    </div>
+    <div
+      data-testid="month"
+    >
+      Month
+    </div>
+    <div
+      data-testid="month"
+    >
+      Month
+    </div>
+  </ul>
+</div>
+`;
