@@ -4,7 +4,7 @@ import { AppContext } from "../../App";
 import Employees from "../Employees";
 import Letter from "../Letter";
 
-jest.mock("../Letter", () => () => <div class="letter">Letter</div>);
+jest.mock("../Letter", () => () => <div data-testid="letter">Letter</div>);
 
 test("Employees should render correctly", () => {
   const usersByAlphabet = {
@@ -116,11 +116,12 @@ test("Employees should render correctly", () => {
     },
   };
 
-  const { container } = render(
+  const { container, getAllByTestId } = render(
     <AppContext.Provider value={{ usersByAlphabet }}>
       <Employees />
     </AppContext.Provider>
   );
 
   expect(container.firstChild).toMatchSnapshot();
+  expect(getAllByTestId("letter").length).toBe(26);
 });

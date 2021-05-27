@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import Letter from "../Letter";
 import Employee from "../Employee";
 
-jest.mock("../Employee", () => () => <li class="employee">Employee</li>);
+jest.mock("../Employee", () => () => <li data-testid="employee">Employee</li>);
 
 test("Letter should render correctly", () => {
   const letter = "H";
@@ -28,8 +28,10 @@ test("Letter should render correctly", () => {
     },
   };
 
-  const { container } = render(<Letter letter={letter} users={users} />);
+  const { container, getAllByTestId } = render(
+    <Letter letter={letter} users={users} />
+  );
 
   expect(container.firstChild).toMatchSnapshot();
-  expect(container.querySelector(".employee").length).toBe(users.length);
+  expect(getAllByTestId("employee").length).toBe(Object.keys(users).length);
 });

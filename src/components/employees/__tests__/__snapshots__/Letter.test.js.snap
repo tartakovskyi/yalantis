@@ -11,17 +11,17 @@ exports[`Letter should render correctly 1`] = `
     class="users-list"
   >
     <li
-      class="employee"
+      data-testid="employee"
     >
       Employee
     </li>
     <li
-      class="employee"
+      data-testid="employee"
     >
       Employee
     </li>
     <li
-      class="employee"
+      data-testid="employee"
     >
       Employee
     </li>
