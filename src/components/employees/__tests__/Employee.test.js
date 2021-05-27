@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import Enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
 import { AppContext } from "../../App";
 import Employee from "../Employee";
 
-Enzyme.configure({ adapter: new Adapter() });
-
-describe("<Employee />", () => {
-  let wrapper;
+test("Employee should render correctly", () => {
   const user = {
     id: "5e00928d91e7feaa9872ec08",
     firstName: "Yang",
@@ -24,37 +19,19 @@ describe("<Employee />", () => {
     "5e00928d3939c957e9c63c2a",
   ];
   const changeUserStatus = jest.fn();
-  const setState = jest.fn();
-  const useStateSpy = jest.spyOn(React, "useState");
-  useStateSpy.mockImplementation((init) => [init, setState]);
 
-  beforeEach(() => {
-    wrapper = Enzyme.shallow(
-      <AppContext.Provider value={{ activeUsers, changeUserStatus }}>
-        <Employee user={user} />
-      </AppContext.Provider>
-    );
-  });
+  const { container, getByLabelText } = render(
+    <AppContext.Provider value={{ activeUsers, changeUserStatus }}>
+      <Employee user={user} />
+    </AppContext.Provider>
+  );
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+  expect(container.firstChild).toMatchSnapshot();
 
-  describe("Snapshot", () => {
-    it("Employee should render correctly", () => {
-      expect(wrapper).toMatchSnapshot();
-    });
-  });
-
-  describe("Change Status", () => {
-    it("Change radio button value", () => {
-      wrapper.find(`[id^="active_"]`).simulate("click");
-
-      expect(wrapper.find(".employee__name.active").length).toBe(1);
-      expect(changeUserStatus).toHaveBeenCalled();
-      expect(changeUserStatus).toHaveBeenCalledWith(user.id, 1);
-      expect(setState).toHaveBeenCalled();
-      expect(setState).toHaveBeenCalledWith(1);
-    });
-  });
+  const radio = getByLabelText("active");
+  fireEvent.click(radio);
+  expect(radio.value).toBe("1");
+  expect(changeUserStatus).toHaveBeenCalled();
+  expect(changeUserStatus).toHaveBeenCalledWith(user.id, 1);
+  expect(container.querySelector("h4")).toHaveClass("active");
 });
