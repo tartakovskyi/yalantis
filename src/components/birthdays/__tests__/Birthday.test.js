@@ -10,9 +10,7 @@ const user = {
 };
 
 test("Birthday should render correctly", () => {
-  const { container, getAllByTestId } = render(
-    <Birthday month="May" user={user} />
-  );
+  const { container } = render(<Birthday month="May" user={user} />);
 
   expect(container.firstChild).toMatchSnapshot();
 });

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render correctly 1`] = `
+<div
+  class="App"
+>
+  <header>
+    <div
+      class="container"
+    >
+      <a
+        href="/"
+      >
+        Yalantis React.js School
+      </a>
+    </div>
+  </header>
+  <main>
+    <div
+      class="container"
+    >
+      <div
+        class="row"
+      />
+    </div>
+  </main>
+</div>
+`;

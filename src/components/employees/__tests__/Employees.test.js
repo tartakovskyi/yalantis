@@ -77,42 +77,6 @@ test("Employees should render correctly", () => {
         lastName: "Bass",
         dob: "2019-11-07T10:02:56.514Z",
       },
-      "5e00928d47d38b9000034a60": {
-        id: "5e00928d47d38b9000034a60",
-        firstName: "Frye",
-        lastName: "Burt",
-        dob: "2019-08-18T09:24:01.221Z",
-      },
-      "5e00928d9b95d92f382e6f91": {
-        id: "5e00928d9b95d92f382e6f91",
-        firstName: "Kendra",
-        lastName: "Blair",
-        dob: "2019-05-18T09:30:01.618Z",
-      },
-      "5e00928dcfea7dd7d436a9f8": {
-        id: "5e00928dcfea7dd7d436a9f8",
-        firstName: "Dolores",
-        lastName: "Bryan",
-        dob: "2019-06-07T16:41:34.639Z",
-      },
-      "5e00928df3f5ec0978d90ce7": {
-        id: "5e00928df3f5ec0978d90ce7",
-        firstName: "Madeleine",
-        lastName: "Brooks",
-        dob: "2019-05-12T01:20:34.085Z",
-      },
-      "5e00928ddf2b0005894623cf": {
-        id: "5e00928ddf2b0005894623cf",
-        firstName: "Lea",
-        lastName: "Berger",
-        dob: "2019-04-20T06:59:40.430Z",
-      },
-      "5e00928dc22a048bfcc6632e": {
-        id: "5e00928dc22a048bfcc6632e",
-        firstName: "Dunlap",
-        lastName: "Beasley",
-        dob: "2019-03-30T20:36:35.262Z",
-      },
     },
   };
 
