@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Month should render correctly 1`] = `
+<li
+  class="month"
+>
+  <h4
+    class="month__name"
+  >
+    May
+  </h4>
+  <ul>
+    <li
+      data-testid="birthday"
+    >
+      Birthday
+    </li>
+    <li
+      data-testid="birthday"
+    >
+      Birthday
+    </li>
+    <li
+      data-testid="birthday"
+    >
+      Birthday
+    </li>
+  </ul>
+</li>
+`;

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Letter should render correctly 1`] = `
+<div
+  class="col-4"
+>
+  <h3>
+    H
+  </h3>
+  <ul
+    class="users-list"
+  >
+    <li
+      data-testid="employee"
+    >
+      Employee
+    </li>
+    <li
+      data-testid="employee"
+    >
+      Employee
+    </li>
+    <li
+      data-testid="employee"
+    >
+      Employee
+    </li>
+  </ul>
+</div>
+`;
